@@ -6,7 +6,7 @@
 	  "quotes": ["error", "double"],
 	  "jsx-quotes": ["error", "prefer-double"],
 	  "prefer-const": "warn",
-	  "indent": ["warn", 2],
+	  "indent": ["warn", "tab"],
 	  "semi": ["warn", "always"],
 	  "curly": ["error", "all"],
 	  "import/prefer-default-export": "off",
