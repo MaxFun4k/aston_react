@@ -1,7 +1,6 @@
-import {FC} from "react";
 import "./ErrorMessage.css";
 
-const ErrorMessage:FC = () => {
+const ErrorMessage = () => {
 	return (
 		<div className="error">Упс... ошибка!</div>
 	);

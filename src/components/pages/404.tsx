@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
-import { FC } from "react";
 
 import ErrorMessage from "../errorMessage/ErrorMessage";
 
-export const Page404:FC = () => {
+export const Page404 = () => {
 	return  (
 		<div>
 			<ErrorMessage/>
