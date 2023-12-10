@@ -1,24 +1,17 @@
-// import Routes from '../../routes/Routes.tsx';
-
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { Header } from "../header/Header";
-import { ComponentsTracks } from "../componentsTracks/ComponentsTracks";
-import ErrorBounary from "../errorBounary/ErrorBounary";
+import { ComponentsTracks } from "../pages/componentsTracks/ComponentsTracks";
+import { Page404 } from "../pages/404";
 
 export function App() {
 	return (
-		// <>
-		// 	<Header/>
-		// 	<ErrorBounary>
-		// 		<ComponentsTracks/>
-		// 	</ErrorBounary>
-		// </>
 		<Router>
 			<Header/>
 			<main>
 				<Routes>
 					<Route path="/" element = {<ComponentsTracks/>}/>
+					<Route path="*" element = {<Page404/>}/>
 				</Routes>
 			</main>
 		</Router>

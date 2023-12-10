@@ -10,7 +10,7 @@ interface Props {
 	error: boolean;
   }
 
-class ErrorBounary extends Component<Props, State> {
+class ErrorBoundary extends Component<Props, State> {
 	state = {
 		error: false
 	};
@@ -30,4 +30,4 @@ class ErrorBounary extends Component<Props, State> {
 	}
 }
 
-export default ErrorBounary;
+export default ErrorBoundary;
