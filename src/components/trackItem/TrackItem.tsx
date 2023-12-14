@@ -2,11 +2,14 @@ import { Grid, IconButton } from "@mui/material";
 import "./TrackItem.css";
 import { Pause, PlayArrow } from "@mui/icons-material";
 
-interface TrackItemProps {
+import { Array } from "../../api/responseTypes";
+
+type TrackItemProps = {
 	active?: boolean;
+	track: Array;
 }
 
-const TrackItem: React.FC<TrackItemProps> = ({active = false}) => {
+const TrackItem = ({track, active}: TrackItemProps) => {
 	return (
 		<div className="track">
 			<IconButton>
@@ -14,13 +17,15 @@ const TrackItem: React.FC<TrackItemProps> = ({active = false}) => {
 					? <Pause style={{fontSize: 30, color: "green"}}/>
 					: <PlayArrow style={{fontSize: 30, color: "green"}}/>
 				}
+				<PlayArrow style={{fontSize: 30, color: "green"}}/>
 			</IconButton>
 			<img width = {70} 
-			height={70}
-			src="https://e-cdns-images.dzcdn.net/images/cover/3fedb197fd3ef5c74863611356503ffd/250x250-000000-80-0-0.jpg"/>
+				height={70}
+				src={track.album.cover_medium}
+				alt="img song"/>
 			<Grid container direction="column">
-				<div>Seven Nation Army</div>
-				<div>Gaullin</div>
+				<div>{track.title}</div>
+				<div>{track.artist.name}</div>
 			</Grid>
 		</div>
 	);

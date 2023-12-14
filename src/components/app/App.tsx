@@ -8,12 +8,10 @@ export function App() {
 	return (
 		<Router>
 			<Header/>
-			<main>
-				<Routes>
-					<Route path="/" element = {<ComponentsTracks/>}/>
-					<Route path="*" element = {<Page404/>}/>
-				</Routes>
-			</main>
+			<Routes>
+				<Route path="/" element = {<ComponentsTracks/>}/>
+				<Route path="*" element = {<Page404/>}/>
+			</Routes>
 		</Router>
 	);
 }

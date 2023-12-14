@@ -1,5 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-export const store = configureStore({
-	reducer: {}
+import { tracksApi } from "../api/tracksApi";
+
+const store = configureStore({
+	reducer: {
+		[tracksApi.reducerPath]: tracksApi.reducer
+	},
+	middleware: getDefaultMiddleware => getDefaultMiddleware().concat(tracksApi.middleware)
 });
+
+export default store;
