@@ -1,4 +1,4 @@
-import { TrackList } from "../trackList/TrackList";
+import { TrackList } from "../../trackList/TrackList";
 import "./ComponentsTracks.css";
 
 export function ComponentsTracks() {
