@@ -1,0 +1,43 @@
+import { createSlice } from "@reduxjs/toolkit";
+
+// export interface playerSlice {
+// 	volum: number;
+// 	pause: boolean;
+// }
+
+const initialState = {
+	pause: false,
+	volume: 50,
+	active: null,
+	duration: 0,
+	currentTime: 0
+};
+
+const playerSlice = createSlice({
+	name: "player",
+	initialState,
+	reducers: {
+		pauseTrack: state => {
+			state.pause = true;
+		},
+		playTrack: state => {
+			state.pause = false;
+		},
+		setVolumeTrack: (state, action) => {
+			state.volume = action.payload;
+		},
+		setActiveTrack: (state, action) => {
+			state.active = action.payload;
+		}
+	}
+});
+
+const {actions, reducer} = playerSlice;
+
+export default reducer;
+export const {
+	pauseTrack,
+	playTrack,
+	setVolumeTrack,
+	setActiveTrack
+} = actions;

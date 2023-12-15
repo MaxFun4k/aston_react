@@ -6,7 +6,7 @@ export function ComponentsTracks() {
 		<div className="main">
 			<div className="container">
 				<div className="mainInner">
-					<p>Track list: </p>
+					<p>Track List: </p>
 					<TrackList/>
 				</div>
 			</div>

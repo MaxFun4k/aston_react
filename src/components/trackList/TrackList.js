@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 
 import  TrackItem  from "../trackItem/TrackItem";
@@ -7,7 +7,15 @@ import { useGetPlaylistQuery } from "../../api/tracksApi";
 export function TrackList() {
 	const {data: tracks, isLoading} = useGetPlaylistQuery();
 	if(isLoading){
-		return <div>Loading...</div>;			//Нужен лоадер
+		return (
+			<Box
+				display="flex"
+				justifyContent="center"
+				alignItems="center"
+				minHeight="100vh">
+				<CircularProgress style={{color: "rgb(15, 230, 15)"}}/>
+			</Box>
+		);		
 	}
 	return (
 		<Grid2 container direction={"column"}>
