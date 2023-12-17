@@ -11,7 +11,8 @@ const TrackItem = ({track, active}) => {
 	const dispatch = useDispatch();
 
 	const play = (e) => {
-		e.stopPropagation();
+		console.log("Click");
+		e.preventDefault();
 		dispatch(setActiveTrack(track));
 		dispatch(playTrack());
 	};

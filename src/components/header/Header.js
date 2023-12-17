@@ -1,5 +1,10 @@
-import "./Header.css";
+import { Link } from "react-router-dom";
+
 import { Search } from "../search/Search";
+
+import image from "./Green-Music-Note-Neonkyltti.jpg";
+import "./Header.css";
+
 
 export function Header() {
 	return (
@@ -7,7 +12,10 @@ export function Header() {
 			<div className="container">
 				<div className="headerInner">
 					<nav className="menu">
-						<span>Music App</span>
+						<Link to={"/"} style={{ color: "inherit", textDecoration: "inherit"}}>
+							<span>Music App</span>
+							<img src={image} alt="" style={{width: "30px", height: "30px"}}/>
+						</Link>
 						<ul className="menuList">
 							<li>Registration</li>
 							<li>Sign in</li>
