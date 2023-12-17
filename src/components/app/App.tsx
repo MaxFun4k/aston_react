@@ -3,17 +3,17 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Header } from "../header/Header";
 import { ComponentsTracks } from "../pages/componentsTracks/ComponentsTracks";
 import { Page404 } from "../pages/404";
+import Player from "../player/Player";
 
 export function App() {
 	return (
 		<Router>
 			<Header/>
-			<main>
-				<Routes>
-					<Route path="/" element = {<ComponentsTracks/>}/>
-					<Route path="*" element = {<Page404/>}/>
-				</Routes>
-			</main>
+			<Routes>
+				<Route path="/" element = {<ComponentsTracks/>}/>
+				<Route path="*" element = {<Page404/>}/>
+			</Routes>
+			<Player/>
 		</Router>
 	);
 }
