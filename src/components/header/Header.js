@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { Button } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 
 import { Search } from "../search/Search";
 import {useAuth} from "../../hooks/useAuth";
@@ -10,11 +11,17 @@ import image from "./Green-Music-Note-Neonkyltti.jpg";
 import "./Header.css";
 
 
-export function Header() {
+const Header = () => {
 
 	const dispatch = useDispatch();
 	const {isAuth} = useAuth(); 
 	const navigate = useNavigate();
+	const {statusAuth} = useSelector(state => state.user);
+
+	if (statusAuth !== "SUCCESS") {
+		return null;
+	}
+	
 
 	return !isAuth ? (
 		<header className="header">
@@ -72,4 +79,6 @@ export function Header() {
 			</div>
 		</header>
 	);
-}
+};
+
+export default Header;

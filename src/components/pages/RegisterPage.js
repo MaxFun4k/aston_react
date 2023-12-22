@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import Register from "../Registere/Register";
 
-export const RegisterPage = () => {
+const RegisterPage = () => {
 	return (
 		<div style={{background: "white", 
 			padding: "15px",
@@ -16,3 +16,5 @@ export const RegisterPage = () => {
 		</div>
 	);
 };
+
+export default RegisterPage;

@@ -1,12 +1,9 @@
-import { Header } from "../../header/Header";
-
-export const History = () => {
+const History = () => {
 	return (
-		<>
-			<Header/>
-			<div>
-				History
-			</div>
-		</>
+		<div>
+			History
+		</div>
 	);
 };
+
+export default History;

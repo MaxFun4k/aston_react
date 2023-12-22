@@ -1,6 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 
-import { ResponseTypes } from "./responseTypes";
+// import { ResponseTypes } from "./responseTypes";
 
 export const tracksApi = createApi({
 	reducerPath: "tracksApi",
@@ -16,9 +16,20 @@ export const tracksApi = createApi({
 			query: () => ({
 				url: "playlist/1479458365"
 			}),
-			transformResponse: (response: ResponseTypes) => response.tracks.data
+			transformResponse: (response) => response.tracks.data
+		}),
+		getTrack: builder.query({
+			query: (id) => ({
+				url: `track/${id}`
+			})
+		}),
+		getSearchItem: builder.query({
+			query: (search) => ({
+				url: `search?q=${search}`
+			}),
+			transformResponse: (response) => response.data[0]
 		})
 	})
 });
 
-export const {useGetPlaylistQuery} = tracksApi;
+export const {useGetPlaylistQuery, useGetSearchItemQuery, useGetTrackQuery} = tracksApi;

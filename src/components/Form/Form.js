@@ -1,5 +1,6 @@
 import {useState} from "react";
 import { Box, TextField, Button } from "@mui/material";
+import PropTypes from "prop-types";
 
 const Form = ({title, handleClick}) => {
 
@@ -36,5 +37,12 @@ const Form = ({title, handleClick}) => {
 		</Box>
 	);
 }; 
+
+Form.propTypes = {
+	title: PropTypes.string,
+	email: PropTypes.string,
+	pass: PropTypes.string,
+	handleClick: PropTypes.func.isRequired,
+};
 
 export default Form;
