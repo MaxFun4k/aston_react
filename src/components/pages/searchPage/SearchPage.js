@@ -1,22 +1,27 @@
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useSearchParams, Link } from "react-router-dom";
 
 import { CircularProgress, Box} from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 
+import { useGetSearchBySuggestQuery } from "../../../api/tracksApi";
 import TrackItem from "../../trackItem/TrackItem";
 
-import { useGetFavoritesQuery } from "../../../api/favoriteApi";
+import "../../../style/styleTrackComponent.css";
 
-import "../componentsTracks/ComponentsTracks.css";
+const SearchPage = () => {
 
-const Favorite = () => {
+	const [searchParams] = useSearchParams();
+	const searchQueryParam = searchParams.get("search");
+	const {data, isLoading} = useGetSearchBySuggestQuery({search: searchQueryParam});
 
-	const {uid} = useSelector(state => state.user);
+	useEffect(() => {
+		if (!searchQueryParam) {
+			return;
+		  }
+	}, [searchQueryParam]);
 
-	const {data, isLoading, isFetching} = useGetFavoritesQuery(uid);
-	
-	if(isLoading || isFetching) {
+	if(isLoading) {
 		return <Box
 			display="flex"
 			justifyContent="center"
@@ -26,7 +31,7 @@ const Favorite = () => {
 		</Box>;
 	}
 
-	return (
+	return !!data.length ? (
 		<div className="main">
 			<Grid2 container direction={"column"}>
 				<Box p={2}>
@@ -38,7 +43,11 @@ const Favorite = () => {
 				</Box>
 			</Grid2>
 		</div>
+	) : (
+		<div className="main">
+			нет данных
+		</div>
 	);
 };
 
-export default Favorite;
+export default SearchPage;

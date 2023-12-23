@@ -13,6 +13,7 @@ import Player from "../components/player/Player";
 
 const ComponentsTracks = lazy(() => import("../components/pages/componentsTracks/ComponentsTracks"));
 const SingleTrackPage = lazy(() => import("../components/pages/singleTrackPage/SingleTrackPage"));
+const SearchPage = lazy(() => import("../components/pages/searchPage/SearchPage"));
 const Page404 = lazy(() => import("../components/pages/404"));
 const LoginPage = lazy(() => import("../components/pages/LoginPage"));
 const RegisterPage = lazy(() => import("../components/pages/RegisterPage"));
@@ -43,10 +44,11 @@ export const Public = () => {
 						<Route path="*" element = {<Page404/>}/>
 						<Route element = {<PrivateRoute isAuth={isAuth}/>}>
 							<Route path="/history" element = {<History/>}/>
-							<Route path="favorite" element = {<Favorite/>}/>
+							<Route path="/favorite" element = {<Favorite/>}/>
 						</Route>
 						<Route path="/login" element = {<LoginPage/>}/>
 						<Route path="/register" element = {<RegisterPage/>}/>
+						<Route path="/searchPage" element = {<SearchPage/>}/>
 						<Route path="/track/:trackId" element = {<SingleTrackPage/>}/>
 					</Route>
 				</Routes>

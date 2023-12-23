@@ -5,7 +5,6 @@ import { Public } from "../../routes/Routes";
 import ErrorBoundary from "../errorBounary/ErrorBoundary";
 import { checkAuth } from "../../redux/action/authActions";
 
-
 export function App() {
 	const dispatch = useDispatch();
 

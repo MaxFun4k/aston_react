@@ -1,7 +1,5 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 
-// import { ResponseTypes } from "./responseTypes";
-
 export const tracksApi = createApi({
 	reducerPath: "tracksApi",
 	baseQuery: fetchBaseQuery({
@@ -11,10 +9,14 @@ export const tracksApi = createApi({
 			"X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com"
 		}
 	}),
+	refetchOnFocus: true,
 	endpoints: builder => ({
 		getPlaylist: builder.query({
 			query: () => ({
-				url: "playlist/1479458365"
+				url: "playlist/1479458365",
+				params: {
+					limit: 20
+				}
 			}),
 			transformResponse: (response) => response.tracks.data
 		}),
@@ -25,11 +27,25 @@ export const tracksApi = createApi({
 		}),
 		getSearchItem: builder.query({
 			query: (search) => ({
-				url: `search?q=${search}`
+				url: `search?q=${search}`,
+				params: {
+					limit: 5
+				}
 			}),
-			transformResponse: (response) => response.data[0]
+			transformResponse: (response) => response.data
+		}),
+		getSearchBySuggest: builder.query({
+			query: ({search}) => {
+				return {
+					url: `search?q=${search}`,
+					params: {
+						limit: 20
+					}
+				};
+			},
+			transformResponse: (response) => response.data
 		})
 	})
 });
 
-export const {useGetPlaylistQuery, useGetSearchItemQuery, useGetTrackQuery} = tracksApi;
+export const {useGetPlaylistQuery, useGetSearchItemQuery, useGetTrackQuery, useGetSearchBySuggestQuery} = tracksApi;
