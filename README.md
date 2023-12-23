@@ -10,7 +10,7 @@ API - Deezer
 
 ### React
 
-- Функциональные компоненты c хуками в приоритете над классовыми: [component] (#https://github.com/MaxFun4k/aston_react/tree/main/src/components)
+- Функциональные компоненты c хуками в приоритете над классовыми: [component](https://github.com/MaxFun4k/aston_react/tree/main/src/components)
 - Есть разделение на умные и глупые компоненты
 
   Умные: 
