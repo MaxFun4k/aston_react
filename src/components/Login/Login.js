@@ -18,7 +18,7 @@ const Login = () => {
 			.then(({user}) => {
 				dispatch(setUser({
 					email: user.email,
-					id: user.uid,
+					uid: user.uid,
 					token: user.accessToken
 				}));
 				navigate("/");

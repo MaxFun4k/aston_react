@@ -1,20 +1,33 @@
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { Button } from "@mui/material";
+
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
 
 import { Search } from "../search/Search";
 import {useAuth} from "../../hooks/useAuth";
 import { removeUser } from "../../redux/slices/userSlice";
+import { themeContext } from "../../context/themeContext";
 
 import image from "./Green-Music-Note-Neonkyltti.jpg";
 import "./Header.css";
 
 
-export function Header() {
+const Header = () => {
+
+	const context = useContext(themeContext);
 
 	const dispatch = useDispatch();
 	const {isAuth} = useAuth(); 
 	const navigate = useNavigate();
+	const {statusAuth} = useSelector(state => state.user);
+
+	if (statusAuth !== "SUCCESS") {
+		return null;
+	}
+	
 
 	return !isAuth ? (
 		<header className="header">
@@ -26,6 +39,8 @@ export function Header() {
 							<img src={image} alt="" style={{width: "30px", height: "30px"}}/>
 						</Link>
 						<ul className="menuList">
+							<DarkModeIcon style={{color: "rgb(15, 230, 15)"}}/>
+							<LightModeIcon style={{color: "rgb(15, 230, 15)"}}/>
 							<Link to={"/register"} style={{ color: "inherit", textDecoration: "inherit"}}>
 								<li>Registration</li>
 							</Link>
@@ -48,6 +63,8 @@ export function Header() {
 							<img src={image} alt="" style={{width: "30px", height: "30px"}}/>
 						</Link>
 						<ul className="menuList">
+							<DarkModeIcon style={{color: "rgb(15, 230, 15)"}}/> 
+							<LightModeIcon style={{color: "rgb(15, 230, 15)"}}/>
 							<Link to={"/history"} style={{ color: "inherit", textDecoration: "inherit"}}>
 								<li>History</li>
 							</Link>
@@ -72,4 +89,6 @@ export function Header() {
 			</div>
 		</header>
 	);
-}
+};
+
+export default Header;

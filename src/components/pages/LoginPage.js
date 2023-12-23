@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import Login from "../Login/Login";
 
-export const LoginPage = () => {
+const LoginPage = () => {
 	return (
 		<div style={{background: "white",
 			padding: "15px", 
@@ -16,3 +16,5 @@ export const LoginPage = () => {
 		</div>
 	);
 };
+
+export default LoginPage;
