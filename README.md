@@ -19,7 +19,7 @@ API - Deezer
 
 - Есть рендеринг списков: [Favorite](https://github.com/MaxFun4k/aston_react/blob/main/src/components/pages/favorite/Favorite.js), [History](https://github.com/MaxFun4k/aston_react/blob/main/src/components/pages/history/History.js) и т.д.
 - Реализована хотя бы одна форма: [Form](https://github.com/MaxFun4k/aston_react/blob/main/src/components/Form/Form.js), [Search](https://github.com/MaxFun4k/aston_react/blob/main/src/components/search/Search.js) и т.д.
-- Есть применение Контекст API: Не доделан
+- Есть применение Контекст API: [ThemeContext](https://github.com/MaxFun4k/aston_react/blob/main/src/components/ThemeButton/ThemeButton.js) в [App](https://github.com/MaxFun4k/aston_react/blob/main/src/components/app/App.js)
 - Есть применение предохранителя: [ErrorBoundary](https://github.com/MaxFun4k/aston_react/blob/main/src/components/errorBounary/ErrorBoundary.tsx) в [App](https://github.com/MaxFun4k/aston_react/blob/main/src/components/app/App.js)
 - Есть хотя бы один кастомный хук: [useAuth](https://github.com/MaxFun4k/aston_react/blob/main/src/hooks/useAuth.js) и [useDebounce](https://github.com/MaxFun4k/aston_react/blob/main/src/hooks/useDebounce.js)
 - Хотя бы несколько компонентов используют PropTypes: [FavoriteBtn](https://github.com/MaxFun4k/aston_react/blob/main/src/components/favoriteBtn/FavoriteBtn.js) и [Form](https://github.com/MaxFun4k/aston_react/blob/main/src/components/Form/Form.js)
