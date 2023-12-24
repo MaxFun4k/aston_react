@@ -1,3 +1,5 @@
+import { CircularProgress, Box} from "@mui/material";
+
 import { useGetHistoryQuery } from "../../../api/historyApi";
 import { useAuth } from "../../../hooks/useAuth";
 
@@ -9,15 +11,17 @@ const History = () => {
 	const {data, isLoading} = useGetHistoryQuery(uid);
 
 	if(isLoading) {
-		return (
-			<div>
-				ЖДЕМ
-			</div>
-		);
+		return <Box
+			display="flex"
+			justifyContent="center"
+			alignItems="center"
+			minHeight="100vh">
+			<CircularProgress style={{color: "rgb(15, 230, 15)"}}/>
+		</Box>;
 	}
 
 
-	return data && (
+	return data ? (
 		<div>
 			{Object.entries(data).map((searchResponse) => {
 				const [key, {search, searchUrl}] = searchResponse;
@@ -27,6 +31,10 @@ const History = () => {
 					uniqKey={key}
 					searchUrl={searchUrl}/>;
 			})}
+		</div>
+	) : (
+		<div className="main">
+			нет данных
 		</div>
 	);
 };

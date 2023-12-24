@@ -12,7 +12,7 @@ import "../componentsTracks/ComponentsTracks.css";
 
 const Favorite = () => {
 
-	const {uid} = useSelector(state => state.user);
+	const uid = useSelector(state => state.user.uid);
 
 	const {data, isLoading, isFetching} = useGetFavoritesQuery(uid);
 	
@@ -26,7 +26,7 @@ const Favorite = () => {
 		</Box>;
 	}
 
-	return (
+	return !!data.length ? (
 		<div className="main">
 			<Grid2 container direction={"column"}>
 				<Box p={2}>
@@ -37,6 +37,10 @@ const Favorite = () => {
 					)}
 				</Box>
 			</Grid2>
+		</div>
+	) : (
+		<div className="main">
+			нет данных
 		</div>
 	);
 };

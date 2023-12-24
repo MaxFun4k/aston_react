@@ -20,24 +20,22 @@ const HistoryItem = ({search, uniqKey, 	searchUrl}) => {
 				<List>
 					<ListItem
 						secondaryAction={
-							<IconButton edge="end" aria-label="delete">
+							<IconButton edge="end" 
+								aria-label="delete"
+								onClick={(e) => {
+									e.preventDefault();
+									removeFromHistory({uid, uniqKey});
+								}}>
 								<DeleteIcon 
-									style={{color: "white"}}
-									onClick={(e) => {
-										e.preventDefault();
-										removeFromHistory({uid, uniqKey});
-									}}/>
+									style={{color: "white"}}/>
 							</IconButton>
-						}
-					>
+						}>
 						<ListItemAvatar>
 							<Avatar>
 								<HistoryIcon />
 							</Avatar>
 						</ListItemAvatar>
-						<ListItemText
-							primary={search}
-						/>
+						<ListItemText primary={search}/>
 					</ListItem>
 				</List>
 			</div>

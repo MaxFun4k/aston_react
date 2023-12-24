@@ -14,7 +14,7 @@ import "./TrackItem.css";
 const TrackItem = ({track}) => {
 
 	const [activePlay, setActivePlay] = useState(false);
-	const {pause} = useSelector(state => state.player);
+	const pause = useSelector(state => state.player.pause);
 	const {uid, isAuth} = useAuth();
 
 	const dispatch = useDispatch();
