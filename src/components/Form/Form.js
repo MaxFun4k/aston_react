@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const Form = ({title, handleClick}) => {
 
 	const [email, setEmail] = useState("");
-	const [pass, setPass] = useState("");
+	const [password, setPassword] = useState("");
 
 	return (
 		<Box
@@ -24,13 +24,13 @@ const Form = ({title, handleClick}) => {
 				variant="outlined" />
 			<TextField 
 				type="password"
-				value={pass}
-				onChange={(e) => setPass(e.target.value)}
+				value={password}
+				onChange={(e) => setPassword(e.target.value)}
 				id="outlined-basic" 
 				label="Password" 
 				variant="outlined"/>
 			<Button
-				onClick={() => handleClick(email, pass)}
+				onClick={() => handleClick(email, password)}
 				style={{color: "black", background: "rgb(15, 230, 15)"}}>
 				{title}
 			</Button>

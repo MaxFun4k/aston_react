@@ -1,10 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// export interface playerSlice {
-// 	volum: number;
-// 	pause: boolean;
-// }
-
 const initialState = {
 	pause: false,
 	volume: 50,

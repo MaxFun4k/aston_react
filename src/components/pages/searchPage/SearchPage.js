@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 
 import { CircularProgress, Box} from "@mui/material";
@@ -14,12 +13,6 @@ const SearchPage = () => {
 	const [searchParams] = useSearchParams();
 	const searchQueryParam = searchParams.get("search");
 	const {data, isLoading} = useGetSearchBySuggestQuery({search: searchQueryParam});
-
-	useEffect(() => {
-		if (!searchQueryParam) {
-			return;
-		  }
-	}, [searchQueryParam]);
 
 	if(isLoading) {
 		return <Box

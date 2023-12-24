@@ -1,15 +1,11 @@
-import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector} from "react-redux";
 import { Button } from "@mui/material";
 
-import DarkModeIcon from "@mui/icons-material/DarkMode";
-import LightModeIcon from "@mui/icons-material/LightMode";
-
 import { Search } from "../search/Search";
+import { ThemeButton } from "../ThemeButton/ThemeButton";
 import {useAuth} from "../../hooks/useAuth";
 import { removeUser } from "../../redux/slices/userSlice";
-import { themeContext } from "../../context/themeContext";
 
 import image from "./Green-Music-Note-Neonkyltti.jpg";
 import "./Header.css";
@@ -17,12 +13,10 @@ import "./Header.css";
 
 const Header = () => {
 
-	const context = useContext(themeContext);
-
 	const dispatch = useDispatch();
 	const {isAuth} = useAuth(); 
 	const navigate = useNavigate();
-	const {statusAuth} = useSelector(state => state.user);
+	const statusAuth = useSelector(state => state.user.statusAuth);
 
 	if (statusAuth !== "SUCCESS") {
 		return null;
@@ -39,8 +33,7 @@ const Header = () => {
 							<img src={image} alt="" style={{width: "30px", height: "30px"}}/>
 						</Link>
 						<ul className="menuList">
-							<DarkModeIcon style={{color: "rgb(15, 230, 15)"}}/>
-							<LightModeIcon style={{color: "rgb(15, 230, 15)"}}/>
+							<ThemeButton/>
 							<Link to={"/register"} style={{ color: "inherit", textDecoration: "inherit"}}>
 								<li>Registration</li>
 							</Link>
@@ -63,8 +56,7 @@ const Header = () => {
 							<img src={image} alt="" style={{width: "30px", height: "30px"}}/>
 						</Link>
 						<ul className="menuList">
-							<DarkModeIcon style={{color: "rgb(15, 230, 15)"}}/> 
-							<LightModeIcon style={{color: "rgb(15, 230, 15)"}}/>
+							<ThemeButton/>
 							<Link to={"/history"} style={{ color: "inherit", textDecoration: "inherit"}}>
 								<li>History</li>
 							</Link>

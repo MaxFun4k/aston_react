@@ -1,21 +1,29 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { IconButton, InputBase, Paper, CircularProgress } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
+import { setSearchValue } from "../../redux/slices/searchSlice";
 import { SearchItem } from "../searchItem/SearchItem";
 import { useGetSearchItemQuery } from "../../api/tracksApi";
 import { useDebounce } from "../../hooks/useDebounce";
 import { useAuth } from "../../hooks/useAuth";
 import { useAddInHistoryMutation } from "../../api/historyApi";
 
+import "./search.css";
+
 export function Search() {
 
 	const navigate = useNavigate();
+	const inputRef = useRef(null);
+	const dispatch = useDispatch();
 
-	const [search, setSearch] = useState("");
+	// const [search, setSearch] = useState("");
+	const search = useSelector(state => state.search.search);
 	const [dropdown, setDropdown] = useState(false);
+	const [open, setOpen] = useState(false);
 	const {uid, isAuth} = useAuth();
 
 	const debounced = useDebounce(search, 300);
@@ -26,11 +34,12 @@ export function Search() {
 	});
 
 	useEffect(() => {
-		setDropdown(debounced.length > 1);
+		setDropdown(true);
 	}, [debounced]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setOpen(false);
 
 		if(!debounced) {
 			return;
@@ -45,12 +54,16 @@ export function Search() {
 				search: debounced
 			});
 		}
-		
 	};
 
 	const onSearchButtonClick = (e) => {
 		e.preventDefault();
-		setSearch(e.target.value);
+		dispatch(setSearchValue({searchValue: e.target.value}));
+		if(e.target.value.length) {
+			setOpen(true);
+		} else {
+			setOpen(false);
+		}
 	};
 
 	return (
@@ -64,19 +77,13 @@ export function Search() {
 					placeholder="Search tracks"
 					inputProps={{ "aria-label": "search google maps" }}
 					value={search}
-					onChange={onSearchButtonClick}/>
-				<IconButton type="button" sx={{ p: "10px" }} aria-label="search">
-					<SearchIcon />
+					onChange={onSearchButtonClick}
+					ref={inputRef}/>
+				<IconButton type="button" sx={{ p: "10px" }} aria-label="search" onClick={handleSubmit}>
+					<SearchIcon/>
 				</IconButton>
 			</Paper>
-			{dropdown && <ul style={{listStyleType: "none", 
-				position: "absolut", 
-				top: "42px", 
-				maxHeight: "200px", 
-				width: 1150, 
-				maxWidth: "100%", 
-				background: "#222323", 
-				overflowY: "scroll"}}>	
+			{dropdown && open && <ul className="dropdown_open">	
 				{isLoading && <CircularProgress/>}
 				{data && data.map(track => 
 					<SearchItem key={track.id} track={track}/>
