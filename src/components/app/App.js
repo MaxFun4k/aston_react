@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useDispatch } from "react-redux";
 
 import { Public } from "../../routes/Routes";
@@ -14,10 +14,7 @@ export function App() {
 		setToggleTheme(!toggleTheme);
 	};
 
-	const valueToggle = {
-		toggle,
-		toggleTheme
-	};
+	const valueToggle = useMemo(() => ({toggle,	toggleTheme	}), [toggleTheme]);
 
 	useEffect(() => {
 		dispatch(checkAuth());

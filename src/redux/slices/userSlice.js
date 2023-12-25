@@ -1,4 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { signInWithEmailAndPassword, getAuth, createUserWithEmailAndPassword } from "@firebase/auth";
+
 
 const initialState = {
 	statusAuth: "LOADING",
@@ -6,6 +8,24 @@ const initialState = {
 	token: null,
 	uid: null,
 };
+
+export const loginAction = createAsyncThunk(
+	"user/login",
+	async ({email, password}) => {
+		const auth = getAuth();
+		const response = await signInWithEmailAndPassword(auth, email, password);
+		return response.user;
+	}
+);
+
+export const registerAction = createAsyncThunk(
+	"user/register",
+	async ({email, password}) => {
+		const auth = getAuth();
+		const response = await createUserWithEmailAndPassword(auth, email, password);
+		return response.user;
+	}
+);
 
 const userSlice = createSlice({
 	name: "user",
@@ -23,6 +43,19 @@ const userSlice = createSlice({
 			state.uid = null;
 			state.statusAuth = "SUCCESS";
 		}
+	}, 
+	extraReducers: (builder) =>{
+		builder
+			.addCase(loginAction.fulfilled, (state, action) => {
+				state.email = action.payload.email;
+				state.token = action.payload.token;
+				state.uid = action.payload.uid;
+			})
+			.addCase(registerAction.fulfilled, (state, action) => {
+				state.email = action.payload.email;
+				state.token = action.payload.token;
+				state.uid = action.payload.uid;
+			});
 	}
 });
 

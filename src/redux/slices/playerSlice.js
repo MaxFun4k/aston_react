@@ -3,9 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
 	pause: false,
 	volume: 50,
-	active: null,
-	duration: 0,
-	currentTime: 0
+	active: null
 };
 
 const playerSlice = createSlice({
