@@ -3,6 +3,7 @@ import { Grid, IconButton, Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
+import { playerSelectors } from "../../redux";
 import { pauseTrack, playTrack, setVolumeTrack } from "../../redux/slices/playerSlice";
 import VolumeProgress from "../volumeProgress/VolumeProgress";
 
@@ -14,7 +15,7 @@ let audio;
 const Player = () => {
 
 	const dispatch = useDispatch();
-	const {pause, volume, active} = useSelector(state => state.player);
+	const {pause, volume, active} = useSelector(playerSelectors.player);
 
 	useEffect(() => {
 		if (!audio) {

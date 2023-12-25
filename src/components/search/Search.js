@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -10,6 +10,7 @@ import { SearchItem } from "../searchItem/SearchItem";
 import { useGetSearchItemQuery } from "../../api/tracksApi";
 import { useDebounce } from "../../hooks/useDebounce";
 import { useAuth } from "../../hooks/useAuth";
+import { searchSelectors } from "../../redux";
 import { useAddInHistoryMutation } from "../../api/historyApi";
 
 import "./search.css";
@@ -20,9 +21,7 @@ export function Search() {
 	const inputRef = useRef(null);
 	const dispatch = useDispatch();
 
-	// const [search, setSearch] = useState("");
-	const search = useSelector(state => state.search.search);
-	const [dropdown, setDropdown] = useState(false);
+	const search = useSelector(searchSelectors.search);
 	const [open, setOpen] = useState(false);
 	const {uid, isAuth} = useAuth();
 
@@ -33,9 +32,6 @@ export function Search() {
 		refetchOnFocus: true
 	});
 
-	useEffect(() => {
-		setDropdown(true);
-	}, [debounced]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -66,6 +62,10 @@ export function Search() {
 		}
 	};
 
+	const onHide = () => {
+		setOpen(false);
+	};
+
 	return (
 		<>
 			<Paper
@@ -78,12 +78,13 @@ export function Search() {
 					inputProps={{ "aria-label": "search google maps" }}
 					value={search}
 					onChange={onSearchButtonClick}
+					onBlur={onHide}
 					ref={inputRef}/>
 				<IconButton type="button" sx={{ p: "10px" }} aria-label="search" onClick={handleSubmit}>
 					<SearchIcon/>
 				</IconButton>
 			</Paper>
-			{dropdown && open && <ul className="dropdown_open">	
+			{open && <ul className="dropdown_open">	
 				{isLoading && <CircularProgress/>}
 				{data && data.map(track => 
 					<SearchItem key={track.id} track={track}/>

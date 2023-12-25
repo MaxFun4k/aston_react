@@ -5,6 +5,7 @@ import { Button } from "@mui/material";
 import { Search } from "../search/Search";
 import { ThemeButton } from "../ThemeButton/ThemeButton";
 import {useAuth} from "../../hooks/useAuth";
+import {authSelectors} from "../../redux";
 import { removeUser } from "../../redux/slices/userSlice";
 
 import image from "./Green-Music-Note-Neonkyltti.jpg";
@@ -16,7 +17,7 @@ const Header = () => {
 	const dispatch = useDispatch();
 	const {isAuth} = useAuth(); 
 	const navigate = useNavigate();
-	const statusAuth = useSelector(state => state.user.statusAuth);
+	const statusAuth = useSelector(authSelectors.status);
 
 	if (statusAuth !== "SUCCESS") {
 		return null;

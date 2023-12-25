@@ -28,7 +28,9 @@ const store = configureStore({
 		[historyApi.reducerPath]: historyApi.reducer
 	},
 	middleware: getDefaultMiddleware => 
-		getDefaultMiddleware()
+		getDefaultMiddleware({
+			serializableCheck: false
+		})
 			.concat(stringMiddleware, tracksApi.middleware)
 			.concat(stringMiddleware, favoriteApi.middleware)
 			.concat(stringMiddleware, historyApi.middleware)
@@ -36,4 +38,7 @@ const store = configureStore({
 
 setupListeners(store.dispatch);
 
+export * as authSelectors from "./selectors/authSelectors";
+export * as playerSelectors from "./selectors/playerSelectors";
+export * as searchSelectors from "./selectors/searchSelectors";
 export default store;

@@ -8,13 +8,14 @@ import {FavoriteBtn} from "../favoriteBtn/FavoriteBtn";
 import { pauseTrack, playTrack, setActiveTrack } from "../../redux/slices/playerSlice";
 import { useAddInFavoritesMutation, useRemoveFromFavoritesMutation, useGetFavoritesByIdQuery } from "../../api/favoriteApi";
 import { useAuth } from "../../hooks/useAuth";
+import { playerSelectors } from "../../redux";
 
 import "./TrackItem.css";
 
 const TrackItem = ({track}) => {
 
 	const [activePlay, setActivePlay] = useState(false);
-	const pause = useSelector(state => state.player.pause);
+	const pause = useSelector(playerSelectors.pause);
 	const {uid, isAuth} = useAuth();
 
 	const dispatch = useDispatch();

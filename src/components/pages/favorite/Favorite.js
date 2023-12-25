@@ -7,12 +7,13 @@ import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import TrackItem from "../../trackItem/TrackItem";
 
 import { useGetFavoritesQuery } from "../../../api/favoriteApi";
+import { authSelectors } from "../../../redux";
 
 import "../componentsTracks/ComponentsTracks.css";
 
 const Favorite = () => {
 
-	const uid = useSelector(state => state.user.uid);
+	const uid = useSelector(authSelectors.uid);
 
 	const {data, isLoading, isFetching} = useGetFavoritesQuery(uid);
 	
